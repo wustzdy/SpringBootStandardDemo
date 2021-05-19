@@ -1,41 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.4.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-    <groupId>com.example.springboot.standard.demo</groupId>
-    <artifactId>springboottest</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>springboottest</name>
-    <description>Demo project for Spring Boot</description>
+https://www.jianshu.com/p/4a0b67c06787
 
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
+Jib 是 Google 开发的可以直接构建 Java 应用的 Docker 和 OCI 镜像的类库，以 Maven 和 Gradle 插件形式提供。
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
+通过 Jib，Java 开发者可以使用他们熟悉的 Java 工具来构建容器。Jib 是一个快速而简单的容器镜像构建工具，它负责处理将应用程序打包到容器镜像中所需的所有步骤。它不需要你编写 Dockerfile 或安装 Docker，而且可以直接集成到 Maven 和 Gradle中 —— 只需要将插件添加到构建中，就可以立即将 Java 应用程序容器化。
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-    </dependencies>
+mvn 添加构建依赖
 
-    <build>
+<build>
         <plugins>
             <!--mvn build 插件-->
             <plugin>
@@ -73,11 +44,15 @@
                     </from>
                     <!--构建的images 名字 和 tag(自定义)-->
                     <to>
-                        <image>JibDemo/${project.artifactId}:1.0.0</image>
+                        <image>athzcc/${project.artifactId}:1.0.0</image>
                     </to>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
-</project>
+使用此插件要先在本机安装docker,构建进入构建项目的根目录，
+执行构建命令mvn compile jib:dockerBuild,
+构建完成在查看docker images
+
+运行镜像 docker run imageName:tag
